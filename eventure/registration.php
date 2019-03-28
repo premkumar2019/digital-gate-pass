@@ -3,11 +3,12 @@
 <head>
 <title>Student Registration Form</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<style type="text/css">
-    .error {
-      color:red;
-    }
-  </style>
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>  
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
 
 
 </head>
@@ -17,7 +18,7 @@
 <h3 align="center" >STUDENT REGISTRATION FORM</h3>
 <div class="container">
 
-<form class="well form-horizontal" action="" method="post"   name="contactForm" novalidate >
+<form class="well form-horizontal" action="" method="post"   name="contactForm" id="contactForm"  >
 
 <fieldset>
 
@@ -26,11 +27,9 @@
   <div class="col-md-4 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="Fname" placeholder="First Name"  class="form-control"  type="text" maxlength="10" value="<?php if (isset($name)) echo $name ?>"/>
-  <span class="error"><?php if (isset($nameError)) echo $nameError ?></span>
-  <p class="help-Block"></p>
+  <input  name="Fname" placeholder="First Name"  class="form-control"  type="text" maxlength="10" >
     </div>
-	
+  
   </div>
 </div>
 
@@ -54,8 +53,6 @@
                                 <label>
                                     <input type="radio" name="Gender"  value ="Male"/> Male
                                 </label>
-                            </div>
-                            <div class="radio">
                                 <label>
                                     <input type="radio" name="Gender" value="Female"  /> Female
                                 </label>
@@ -85,21 +82,21 @@
       <option value=" " >select college</option>
       <option></option>
       <option >AIT</option>
-	  <option >CIET</option>
+    <option >CIET</option>
       <option >CMS</option>
-	  <option >CSI</option>
+    <option >CSI</option>
       <option >Eswar</option>
-	  <option >GCT</option>
-	  <option >KCT </option>
-	  <option >KGCAS</option>
-	  <option >KITE</option>
-	  <option >Kongunadu</option>
-	  <option >Krishnammal</option>
-	  <option >NGP</option>
-	  <option >PPG</option>
-	  <option >PSG </option>
-	  <option >Ramakrishna</option>
-	   </select>
+    <option >GCT</option>
+    <option >KCT </option>
+    <option >KGCAS</option>
+    <option >KITE</option>
+    <option >Kongunadu</option>
+    <option >Krishnammal</option>
+    <option >NGP</option>
+    <option >PPG</option>
+    <option >PSG </option>
+    <option >Ramakrishna</option>
+     </select>
   </div>
 </div>
 </div>
@@ -115,14 +112,14 @@
       <option>Blind coding</option>
       <option >Cube casting</option>
       <option >cyber savvy</option>
-	  <option >Dance(group) </option>
-	  <option> Dance (solo) </option>
+    <option >Dance(group) </option>
+    <option> Dance (solo) </option>
       <option >Debudding</option>
-	  <option >Mimicry</option>
-	  <option >Music</option>
-	  <option >Quiz</option>
-	  <option >Robowars</option>
-	  <option >Singing</option>
+    <option >Mimicry</option>
+    <option >Music</option>
+    <option >Quiz</option>
+    <option >Robowars</option>
+    <option >Singing</option>
       <option >Tech hunt</option>
       <option >Treasur hunt</option>
       
@@ -139,8 +136,7 @@
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input name="Email_Id" placeholder="E-Mail Address" class="form-control"  type="text" value="<?php if (isset($email)) echo $email ?>" maxlength="100"/>
-  <span class="error"><?php if (isset($emailError)) echo $emailError ?></span>
+  <input name="Email_Id" placeholder="E-Mail Address" class="form-control"  type="text"  maxlength="100"/>
     </div>
   </div>
 </div>
@@ -234,54 +230,133 @@
     <button type="submit"  name="submit"  class="btn btn-success" >Register <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>
+<div class="form-group">
+        <div class="col-md-4 col-md-offset-3">
+            <div id="messages"></div>
+        </div>
+    </div>
 
 </fieldset>
 </form>
 </div>
  </div><!-- /.container -->
 
- <?php
 
+ <script >
+$(document).ready(function() {
+    $('#contactForm').bootstrapValidator({
+        container: '#messages',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            Fname: {
+                validators: {
+                  stringLength: {
+                        min: 2,
+                    },
+                    notEmpty: {
+                        message: 'The first name is required and cannot be empty'
+                    }
+                }
+            },
+            Lname: {
+                validators: {
+                  stringLength: {
+                        min: 2,
+                    },
+                    notEmpty: {
+                        message: 'The last name is required and cannot be empty'
+                    }
+                }
+            },
+            clgname: {
+                validators: {
+                    notEmpty: {
+                        message: 'The  clgname is required and cannot be empty'
+                    }
+                }
+            },
+            eventdest: {
+                validators: {
+                    notEmpty: {
+                        message: 'The eventdestination is required and cannot be empty'
+                    }
+                }
+            },
+            events: {
+                validators: {
+                    notEmpty: {
+                        message: 'The events is required and cannot be empty'
+                    }
+                }
+            },
+            Email_Id: {
+                validators: {
+                    notEmpty: {
+                        message: 'The email address is required and cannot be empty'
+                    },
+                    emailAddress: {
+                        message: 'The email address is not valid'
+                    }
+                }
+            },
+            Mobile_Number: {
+                validators: {
+                  stringLength: {
+                        min: 10,
+                    },
+                    notEmpty: {
+                        message: 'The mobile number is required '
+                    }
+                }
+            },
 
- function validateForm(){
+            address: {
+                validators: {
+                    notEmpty: {
+                        message: 'The address is required '
+                    }
+                }
+            },
+            City: {
+                validators: {
+                    notEmpty: {
+                        message: 'The city required'
+                    }
+                }
+            },
+             state: {
+                validators: {
+                    notEmpty: {
+                        message: 'select you are state required'
+                    }
+                }
+            },
+             Pin_Code: {
+                validators: {
+                  stringLength: {
+                        min: 2,
+                    },
 
-    function validate($str) {
-     return trim(htmlspecialchars($str));
-    }
-    
-    if (empty($_POST['Fname'])) {
-
-    $nameError = 'Name should be filled';
-    } else 
-      {
-      $name = validate($_POST['Fname']);
-      if (!preg_match('/^[a-zA-Z0-9\s]+$/', $name)) {
-        $nameError = 'Name can only contain letters, numbers and white spaces';
-      }
-    }
-    if (empty($_POST['Email_Id'])) {
-    $emailError = 'Please enter your email';
-    } 
-    else 
-    {
-      $email = validate($_POST['Email_Id']);
-      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
-        {
-          $emailError = 'Invalid Email';
+                    notEmpty: {
+                        message: 'The pincode required'
+                    }
+                }
+            },
         }
-    }
-    if (empty($nameError)&& empty($emailError)){
-        echo "You have filled the form successfully!";
-        echo "<br> First Name: $name </br>";
-        echo "<br> E-Mail: $email </br>";
-      }
-  }
+    });
+});
+ </script>
 
+
+ <?php
 
 
 if(isset($_POST["submit"]))
 {
-  validateForm();
 
 $hostname = 'localhost';
 $username = 'root';
@@ -314,9 +389,6 @@ $link = mysql_connect("$hostname", "$username", "$password");
         $State=$_POST["state"];
         $pincode = $_POST["Pin_Code"];
         
-        
-        
-
         $strSQL = "Insert into tbl_mst_student(num_student_id,vch_first_name,vch_last_name,vch_gender,vch_college_name,vch_venue,vch_events,
         vch_email,int_mobile_no,vch_address,vch_city,vch_state,int_pincode) values ('',
         '$firstName','$lastName','$gender','$college','$eventdesti','$event','$emailId','$mobile','$Address','$city',
@@ -339,7 +411,6 @@ $link = mysql_connect("$hostname", "$username", "$password");
   
 
 ?>
-
 
 
 </body>
