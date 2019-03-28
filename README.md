@@ -36,7 +36,7 @@ Manoj kumar A 15ITA36 (711715205701)
 
 
 # Project Status
-Completed UI 30% 
+Completed UI 50% 
 Connectivity 80%
 
 # Yet to Complete 
